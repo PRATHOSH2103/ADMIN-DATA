@@ -40,7 +40,7 @@ const Master = () => {
         </div>
 
         <div className="page" onClick={() => navigate("/dashboard")}>
-          <span>Master</span> › <span className="active">Student ID</span>
+          <span>Master</span>&nbsp; › &nbsp;<span className="active">Student ID</span>
         </div>
 
       </div>

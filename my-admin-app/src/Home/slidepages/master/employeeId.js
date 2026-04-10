@@ -40,7 +40,7 @@ const EmployeeId = () => {
         </div>
 
         <div className="page" onClick={() => navigate("/dashboard")}>
-          <span>Master</span> › <span className="active">Employee ID</span>
+          <span>Master</span>&nbsp; › &nbsp;<span className="active">Employee ID</span>
         </div>
 
       </div>
