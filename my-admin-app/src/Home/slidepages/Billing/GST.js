@@ -71,61 +71,6 @@ const Invoice = () => {
     const grandTotal = subTotal + igst;
 
 
-    //     try {
-    //         if (!selectedCustomer) {
-    //             alert("Please select a customer");
-    //             return;
-    //         }
-
-    //         const filteredItems = rows
-    //             .filter(r => r.description && Number(r.qty) > 0 && Number(r.price) > 0)
-    //             .map(r => ({
-    //                 description: r.description,
-    //                 qty: Number(r.qty),
-    //                 price: Number(r.price),
-    //                 total: Number(r.total)
-    //             }));
-
-    //         if (filteredItems.length === 0) {
-    //             alert("Please add at least one valid item");
-    //             return;
-    //         }
-
-    //         const subTotal = filteredItems.reduce((sum, r) => sum + r.total, 0);
-    //         const igst = subTotal * 0.18;
-    //         const grandTotal = subTotal + igst;
-
-    //         const invoiceData = {
-    //             customerId: selectedCustomer,
-    //             InvoiceNo,
-    //             GSTIN,
-    //             date: date || new Date().toISOString(),
-    //             items: filteredItems,
-    //             subTotal,
-    //             igst,
-    //             grandTotal
-    //         };
-
-    //         await axios.post("http://localhost:4004/api/invoice", invoiceData, {
-    //             headers: { Authorization: `Bearer ${token}` }
-    //         });
-
-    //         alert("Invoice saved Successfully!");
-
-    //         setSelectedCustomer("");
-    //         setInvoiceNo("");
-    //         setGSTIN("");
-    //         setDate("");
-    //         setRows([{ description: "", qty: "", price: "", total: 0 }]);
-
-    //         navigate("/dashboard")
-
-    //     } catch (error) {
-    //         console.error("SAVE ERROR 👉", error.response?.data || error);
-    //         alert(error.response?.data?.message || "Failed to save invoice");
-    //     }
-    // };
-
     const handleSave = async () => {
         try {
             const filteredItems = rows
@@ -358,16 +303,7 @@ const Invoice = () => {
                 </div>
 
                 <div className="footer-wrapper">
-                    {/* <div className="top-row">
-                        <div className="total-words">
-                            <strong>Total (In Words) :</strong> ZERO
-                        </div>
 
-                        <div className="action-buttons">
-                            <button className="save-btn">Save</button>
-                            <button className="print-btn">Print</button>
-                        </div>
-                    </div> */}
                     <div className="top-row">
                         <div className="total-words">
                             <strong>Total (In Words) :</strong> {" "}
