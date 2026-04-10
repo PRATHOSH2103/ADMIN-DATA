@@ -587,24 +587,6 @@ const getEmployeeById = async (req, res) => {
 };
 
 
-// // UPDATE employee
-// const updateEmployee = async (req, res) => {
-//   try {
-
-//     const employee = await Employee.findById(req.params.id);
-//     if (!employee) return res.status(404).json({ message: "employee not found" });
-
-//     Object.assign(employee, req.body);
-
-//     if (req.file) employee.uploadPhoto = req.file.path;
-
-//     await employee.save();
-//     res.json(employee);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
 
 
 const updateEmployee = async (req, res) => {
@@ -872,7 +854,7 @@ const createInvoice = async (req, res) => {
     const igstFormatted = Number(igst).toFixed(2);
     const grandTotalFormatted = Number(grandTotal).toFixed(2);
 
-    // ✅ Save invoice in DB
+    //  Save invoice in DB
     await Invoice.create({
       customerId,
       InvoiceNo,
@@ -1218,196 +1200,6 @@ const deleteLead = async (req, res) => {
 };
 
 
-// const bulkUploadLeads = async (req, res) => {
-//   try {
-//     const { leads } = req.body;
-
-//     if (!leads || leads.length === 0) {
-//       return res.status(400).json({ message: "No leads data received" });
-//     }
-
-//     // Helper function to safely get value
-//     const getValue = (obj, possibleKeys, defaultValue = "") => {
-//       for (let key of possibleKeys) {
-//         if (obj[key]) return obj[key];
-//       }
-//       return defaultValue;
-//     };
-
-//     const formattedLeads = leads.map((row) => {
-
-//       // Normalize Excel column names
-//       const normalized = {};
-//       Object.keys(row).forEach((key) => {
-//         const cleanKey = key.toLowerCase().replace(/\s/g, "");
-//         normalized[cleanKey] = row[key];
-//       });
-
-//       return {
-//         name: getValue(normalized, ["name"]),
-//         qualification: getValue(normalized, ["qualification"]),
-
-
-//         yearOfPassing: getValue(normalized, [
-//           "yearofpassing",
-//           "yearofpass",
-//           "yop"
-//         ]),
-
-//         phoneNumber: getValue(normalized, [
-//           "phonenumber",
-//           "mobile"
-//         ]),
-
-//         location: getValue(normalized, ["location"]),
-//         course: getValue(normalized, ["course"]),
-
-//         followUpStatus: getValue(normalized, [
-//           "followupstatus"
-//         ], "Pending"),
-
-
-//         detailsSent: getValue(normalized, [
-//           "detailssent",
-//           "sent"
-//         ]),
-
-//         assignedTo: getValue(normalized, [
-//           "assignedto",
-//           "assign"
-//         ]),
-
-//         source: getValue(normalized, ["source"]),
-
-//         date: normalized.date
-//           ? new Date(normalized.date)
-//           : new Date(),
-//       };
-//     });
-
-//     await Lead.insertMany(formattedLeads);
-
-//     res.status(200).json({
-//       message: "Bulk upload Successfully",
-//       count: formattedLeads.length,
-//     });
-
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
-
-// const bulkUploadLeads = async (req, res) => {
-//   try {
-//     const { leads } = req.body;
-
-//     if (!leads || leads.length === 0) {
-//       return res.status(400).json({ message: "No leads data received" });
-//     }
-
-//     const formattedLeads = leads.map((row, index) => {
-//       const normalized = {};
-
-//       Object.keys(row).forEach((key) => {
-//         const cleanKey = key.toLowerCase().replace(/\s/g, "");
-//         normalized[cleanKey] = row[key];
-//       });
-
-//       // VALIDATION
-//       if (!normalized.name) {
-//         throw new Error(`Row ${index + 1}: Name is required`);
-//       }
-
-//       //  DATE FIX (DD-MM-YYYY → valid Date)
-//       let parsedDate = new Date();
-
-//       if (normalized.created) {
-//         const val = normalized.created;
-
-//         //  Case 1: Excel serial number (e.g., 45210)
-//         if (typeof val === "number") {
-//           parsedDate = new Date((val - 25569) * 86400 * 1000);
-//         }
-
-//         //  Case 2: String (DD-MM-YYYY or similar)
-//         else if (typeof val === "string") {
-//           if (val.includes("-")) {
-//             const parts = val.split("-");
-
-//             if (parts.length === 3) {
-//               parsedDate = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
-//             }
-//           } else {
-//             // fallback (ISO or other formats)
-//             const temp = new Date(val);
-//             if (!isNaN(temp)) parsedDate = temp;
-//           }
-//         }
-//       }
-//       //  FOLLOWUP ENUM FIX
-//       const followUpStatus = (() => {
-//         const val = (normalized.followup || "").toLowerCase();
-
-//         if (val.includes("interest")) return "Interest";
-//         if (val.includes("not")) return "Not Interest";
-//         if (val.includes("call back")) return "Call Back";
-//         if (val.includes("no response")) return "No Response";
-//         if (val.includes("done")) return "Call Done";
-
-//         return "No Response";
-//       })();
-
-//       //  SOURCE ENUM FIX
-//       const source = (() => {
-//         const val = (normalized.source || "").toLowerCase();
-
-//         if (val.includes("facebook")) return "Facebook";
-//         if (val.includes("instagram")) return "Instagram";
-//         if (val.includes("ref")) return "Referral";
-//         if (val.includes("ads")) return "Ads";
-
-//         return "Ads";
-//       })();
-
-//       return {
-//         date: parsedDate,
-//         name: normalized.name,
-//         qualification: normalized.qualification || "",
-//         yearOfPassing:
-//           normalized.yop || normalized.yearofpassing || "",
-//         phoneNumber: String(
-//           normalized.mobile || normalized.phonenumber || ""
-//         ),
-//         location: normalized.location || "",
-//         course: normalized.course || "",
-//         followUpStatus,
-//         detailsSent:
-//           normalized.sent || normalized.detailssent || "No",
-//         assignedTo:
-//           normalized.assign || normalized.assignedto || "",
-//         source,
-//       };
-//     });
-
-//     const savedLeads = await Lead.insertMany(formattedLeads, {
-//       ordered: false,
-//     });
-
-//     res.status(200).json({
-//       message: "Bulk upload Successfully",
-//       count: savedLeads.length,
-//     });
-
-//   } catch (err) {
-//     console.error("Bulk Upload Error:", err);
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
-
-
 const bulkUploadLeads = async (req, res) => {
   try {
     const { leads } = req.body;
@@ -1496,7 +1288,7 @@ const bulkUploadLeads = async (req, res) => {
       });
     }
 
-    // ✅ Insert ONLY clean data
+    //  Insert ONLY clean data
     let inserted = [];
     if (newLeads.length > 0) {
       inserted = await Lead.insertMany(newLeads);
@@ -1511,7 +1303,8 @@ const bulkUploadLeads = async (req, res) => {
   } catch (err) {
     console.error(err);
 
-    // 🔥 Catch duplicate key error (extra safety)
+    //  duplicate key error 
+
     if (err.code === 11000) {
       return res.status(400).json({
         message: "Duplicate phone numbers found",

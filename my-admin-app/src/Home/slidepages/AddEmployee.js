@@ -110,46 +110,6 @@ const Addemployee = () => {
         }
     }, [id, isEdit, location.state, token]);
 
-    // useEffect(() => {
-    //     if (isEdit) {
-    //         const fetchEmployee = async () => {
-    //             const res = await axios.get(
-    //                 `http://localhost:4004/api/employee/${id}`,
-    //                 {
-    //                     headers: { Authorization: `Bearer ${token}` }
-    //                 }
-    //             );
-
-    //             const data = res.data;
-
-    //             setFormData(prev => ({
-    //                 ...prev,
-    //                 ...data,
-    //                 workExperience: data.workExperience ?? "",
-    //                 salary: data.salary ?? "",
-    //                 annualsalary: data.annualsalary ?? "",
-
-    //             }));
-    //         };
-
-    //         fetchEmployee();
-    //     }
-    // }, [id, isEdit, token]);
-
-
-    // const handleChange = e => {
-    //     const { name, value, files } = e.target;
-
-    //     if (name === "workExperience" && value < 0) return;
-    //     if (name === "totalAmount" && value < 0) return;
-    //     if (name === "remainingAmount" && value < 0) return;
-
-    //     setFormData(prev => ({
-    //         ...prev,
-    //         [name]: files ? files[0] : value
-    //     }));
-    // };
-
 
     const handleChange = (e) => {
         const { name, value, files } = e.target;

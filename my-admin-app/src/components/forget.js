@@ -1,15 +1,11 @@
 
 import axios from 'axios';
 import React, { useState } from 'react';
-// import { useNavigate, } from 'react-router-dom';
 
 import { toast } from "react-toastify";
 
 const Forgot = () => {
 
-    // const navigate = useNavigate()
-
-    // const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
 
 
@@ -20,7 +16,6 @@ const Forgot = () => {
 
             const res = await axios.post(
                 "http://localhost:4004/api/forgot-password",
-                // { username : username },
                 { email : email },
                 { headers: { "Content-Type": "application/json" } }
             );

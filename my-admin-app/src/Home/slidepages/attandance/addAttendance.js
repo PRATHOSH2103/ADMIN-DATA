@@ -146,25 +146,6 @@ const AddAttendance = () => {
                 </div>
 
 
-                {/* <div className="form-group">
-                    <label className="form-label">
-                        Permission <span className="required">*</span>
-                    </label>
-                    &nbsp;
-                    <div className="cash-type">
-                        <label className="radio-item">
-                            <input type="radio" name="permission" value="yes" />
-                            <span>Yes</span>
-                        </label>
-
-                        <label className="radio-item">
-                            <input type="radio" name="permission" value="no" />
-                            <span>NO</span>
-                        </label>
-
-                    </div>
-                </div> */}
-
                 <div className="form-group">
                     <label className="form-label">
                         Permission <span className="required">*</span>

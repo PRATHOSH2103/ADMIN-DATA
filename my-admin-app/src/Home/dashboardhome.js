@@ -235,7 +235,7 @@ const Dashboardhome = () => {
         setEvents(cleanedEvents);
         localStorage.setItem("calendarEvents", JSON.stringify(cleanedEvents));
 
-        // ✅ Fix: automatically select first upcoming event so it shows after refresh
+        //  automatically select first upcoming event so it shows after refresh
         if (futureEvents.length > 0) {
             setSelectedDate(futureEvents[0]);
             setSelectedDay(new Date(futureEvents[0]).getDate());

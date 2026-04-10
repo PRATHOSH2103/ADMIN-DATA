@@ -341,39 +341,6 @@ const AddStudent = () => {
                     />
                 </div>
 
-                {/* <div className="form-group">
-                    <label htmlFor="gender">Gender <span id="star">*</span></label>
-                    <select
-                        id="gender"
-                        name="gender"
-                        type="radio"
-                        required
-                        value={formData.gender || ""}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                        <option value="Others">Others</option>
-                    </select>
-
-                </div> */}
-
-
-                {/* <div className="form-group">
-                    <label htmlFor="maritalStatus">Marital Status <span id="star">*</span></label>
-                    <select
-                        id="maritalStatus"
-                        name="maritalStatus"
-                        required
-                        value={formData.maritalStatus || ""}
-                        onChange={handleChange}
-                    >
-                        <option value="">Select Status</option>
-                        <option value="Married">Married</option>
-                        <option value="Unmarried">Unmarried</option>
-                    </select>
-                </div> */}
 
                 <div className="form-group">
                     <label className="form-label">

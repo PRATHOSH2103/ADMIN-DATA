@@ -310,10 +310,6 @@ const DashBoard = () => {
 
                 {/* dashboard right */}
 
-                {/* <div id="dash-right">
-                    <TopBar />
-                    <Outlet />
-                </div> */}
                 <div id="dash-right" className={sidebarOpen ? "" : "full"}>
 
                     {/* Pass toggle function */}

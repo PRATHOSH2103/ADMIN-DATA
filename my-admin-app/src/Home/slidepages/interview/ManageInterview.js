@@ -137,22 +137,6 @@ const ManageInterview = () => {
                                         </tr>
                                     ) : (
                                         (() => {
-                                            // const item = filteredData[currentIndex];
-
-                                            // return (
-                                            //     <tr key={item._id}>
-                                            //         <td>{currentIndex + 1}</td>
-                                            //         <td>{new Date(item.createdAt).toLocaleDateString()}</td>
-                                            //         <td>{item.intervieweeName}</td>
-                                            //         <td>{item.qualification}</td>
-                                            //         <td>{item.yearOfPassing}</td>
-                                            //         <td>{item.phoneNumber}</td>
-                                            //         <td>{item.location}</td>
-                                            //         <td>{item.jobrole}</td>
-                                            //         <td>{item.followUpStatus}</td>
-                                            //         <td>{new Date(item.scheduleDate).toLocaleDateString()}</td>
-                                            //         <td>{item.source}</td>
-
                                             const item = filteredData[currentIndex];
 
                                             if (!item) {
